@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style>
 
@@ -44,19 +44,19 @@ p.finish{
 <input type = "hidden" value  = "${buildingNo }" name = "buildingNo">
 	<br>
 	<div class="container">
-	<p class="title">¿¹¾àÇÏ½Ç È¸ÀÇ½ÇÀ» ¼±ÅÃÇÏ¼¼¿ä.</p>
+	<p class="title">ì˜ˆì•½í•˜ì‹¤ íšŒì˜ì‹¤ì„ ì„ íƒí•˜ì„¸ìš”.</p>
 		<c:forEach items="${requestScope.meetingroomList }" var="m">
 			<c:choose>
 				<c:when test="${m.capacity eq 20 }">
 					<button type="button" class="btn btn-lg btn-primary" style="width: 150px; height: 150px" disabled="disabled">
-						${m.roomNo }&nbsp;È£ <br> ¼ö¿ëÀÎ¿ø : ${m.capacity } <br> 
-						<p class="finish">´çÀÏ¿¹¾à¸¶°¨!</p>						
+						${m.roomNo }&nbsp;í˜¸ <br> ìˆ˜ìš©ì¸ì› : ${m.capacity } <br> 
+						<p class="finish">ë‹¹ì¼ì˜ˆì•½ë§ˆê°!</p>						
 					</button>
 				</c:when>
 				<c:otherwise>
 					<input type="hidden" name="roomNo" value="${m.roomNo }">
 					<button type="submit" class="btn btn-lg btn-primary" style="width: 150px; height: 150px" >
-						${m.roomNo }&nbsp;È£ <br> ¼ö¿ëÀÎ¿ø : ${m.capacity }
+						${m.roomNo }&nbsp;í˜¸ <br> ìˆ˜ìš©ì¸ì› : ${m.capacity }
 					</button>
 				</c:otherwise>
 			</c:choose>

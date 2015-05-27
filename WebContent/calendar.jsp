@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -46,7 +46,7 @@
 
 		$("#submitButton").on('click', function(e) {
 			// We don't want this to act as a link so cancel the link action
-			alert("Á¤¸» ¿¹¾àÇÏ½Ã°Ú½À´Ï±î?");
+			alert("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï½Ã°Ú½ï¿½ï¿½Ï±ï¿½?");
 			doSubmit();
 		});
 
@@ -133,7 +133,7 @@
 			console.log(empNo);
 			if (empNo == temp) {
 
-				id = name + "´Ô";
+				id = name + "ë‹˜";
 				$("#calendar").fullCalendar('renderEvent', {
 					timezone : false,
 					title : id,
@@ -146,7 +146,7 @@
 				}, true);
 
 			} else {
-				id = temp.substring(0, 3) + "**´Ô";
+				id = temp.substring(0, 3) + "**ë‹˜";
 				$("#calendar").fullCalendar('renderEvent', {
 					timezone : false,
 					title : id,
@@ -169,7 +169,7 @@
 			var rsize = jsonData.rsize;
 			var content = "<table class = 'table table-bordered' style = 'margin-left: 3%; margin-right: 3%;'>";
 
-			content += "<tr><th>½ÃÀÛ½Ã°£</th><th>³¡½Ã°£</th><th>µî·Ï½Ã°£</th></tr>";
+			content += "<tr><th>ì‹œì‘</th><th>ë</th><th>ë“±ë¡ì‹œê°„</th></tr>";
 			for (var i = 0; i < parseInt(rsize); i++) {
 				var start = new Date(rListByNo[i].reservedStart);
 				var end = new Date(rListByNo[i].reservedEnd);
@@ -234,7 +234,7 @@ body {
 
 			<div class="control-group"
 				style="width: 40%; float: right; padding-bottom: 5%">
-				<label class="control-label" for="inputPatient">»ç¿ëÀÚ:</label>
+				<label class="control-label" for="inputPatient">ì‚¬ìš©ì:</label>
 				<div class="controls">
 					<input type="text" name="userName" id="userName"
 						tyle="margin: 0 auto;" data-provide="typeahead" data-items="4"
@@ -249,7 +249,7 @@ body {
 					<div class="controls controls-row" id="when"
 						style="margin-top: 5px;"></div>
 					<br>
-					<button type="submit" class="btn btn-primary" id="submitButton">¿¹¾àÇÏ±â</button>
+					<button type="submit" class="btn btn-primary" id="submitButton">ì˜ˆì•½í•˜ê¸°</button>
 				</div>
 			</div>
 			<div id="list" style="width: 40%; float: right; margin-right: 3%"></div>

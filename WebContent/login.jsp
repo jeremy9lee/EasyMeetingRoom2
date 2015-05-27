@@ -1,10 +1,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
 p {
@@ -31,13 +31,13 @@ p {
 	<form action="login.do" method="post">
 		<center>
 			<img src="img/sds.jpg">
-			<p id="title">È¸ÀÇ½Ç ¿¹¾à½Ã½ºÅÛ</p>
+			<p id="title">íšŒì˜ì‹¤ ì˜ˆì•½ì‹œìŠ¤í…œ</p>
 		</center>
 		<div align="center" class="inputEmpNo">
-			<p>»ç ¹ø À» ÀÔ ·Â ÇÏ ¼¼ ¿ä</p>
+			<p>ì‚¬ ë²ˆ ì„ ìž… ë ¥ í•˜ ì„¸ ìš”</p>
 			<input type="text" name="empNo" style="height: 35px; width: 300px"><br>
 			<br>
-			<button type="submit" class="btn btn-primary">·Î±×ÀÎ</button>
+			<button type="submit" class="btn btn-primary">ë¡œê·¸ì¸</button>
 
 			<!-- Button trigger modal -->
 			<button type="button" class="btn btn-info" data-toggle="modal"
@@ -56,10 +56,10 @@ p {
 							<h4 class="modal-title" id="myModalLabel">How to Use</h4>
 						</div>
 						<div class="modal-body">
-							ÇØ´ç »çÀÌÆ®´Â »ï¼ºSDS ÀÓÁ÷¿øµéÀÇ ÆíÀÇ¸¦ À§ÇØ ¸¸µé¾îÁ³½À´Ï´Ù.<br> <br> <br>
-							1. º»ÀÎÀÇ »ç¹øÀ¸·Î ·Î±×ÀÎ ÇØÁÖ¼¼¿ä.<br> <br> 2. »ï¼ºSDSÀÇ »ç¾÷ÀåÀ» Áöµµ¿¡¼­ Ã£°Å³ª
-							ÀÌ¸§À» Å¬¸¯ÇØÁÖ¼¼¿ä.<br> <br> 3. ¿¹¾àÇÒ È¸ÀÇ½ÇÀ» ¼±ÅÃÇØÁÖ¼¼¿ä.<br> <br>
-							4. ¿øÇÏ´Â ³¯Â¥¿Í ½Ã°£À» ¼±ÅÃÇÑ ÈÄ ¿¹¾à¹öÆ°À» ´­·¯ÁÖ¼¼¿ä!!<br> <br>
+							í•´ë‹¹ ì‚¬ì´íŠ¸ëŠ” ì‚¼ì„±SDS ìž„ì§ì›ë“¤ì˜ íŽ¸ì˜ë¥¼ ìœ„í•´ ë§Œë“¤ì–´ì¡ŒìŠµë‹ˆë‹¤.<br> <br> <br>
+							1. ë³¸ì¸ì˜ ì‚¬ë²ˆìœ¼ë¡œ ë¡œê·¸ì¸ í•´ì£¼ì„¸ìš”.<br> <br> 2. ì‚¼ì„±SDSì˜ ì‚¬ì—…ìž¥ì„ ì§€ë„ì—ì„œ ì°¾ê±°ë‚˜
+							ì´ë¦„ì„ í´ë¦­í•´ì£¼ì„¸ìš”.<br> <br> 3. ì˜ˆì•½í•  íšŒì˜ì‹¤ì„ ì„ íƒí•´ì£¼ì„¸ìš”.<br> <br>
+							4. ì›í•˜ëŠ” ë‚ ì§œì™€ ì‹œê°„ì„ ì„ íƒí•œ í›„ ì˜ˆì•½ë²„íŠ¼ì„ ëˆŒëŸ¬ì£¼ì„¸ìš”!!<br> <br>
 						</div>
 						<ul class="pager">
 							<li><a href="">Previous</a></li>

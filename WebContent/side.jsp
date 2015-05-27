@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
 .side {
@@ -25,14 +25,14 @@
 		<c:choose>
 			<c:when test="${empty requestScope.building }">
 				<tr>
-					<td>${sessionScope.employee.empName}´Ô ¾È³çÇÏ¼¼¿ä!
-						<button type="submit" class="btn btn-info">·Î±×¾Æ¿ô</button>
+					<td>${sessionScope.employee.empName}ë‹˜ ì•ˆë…•í•˜ì„¸ìš”!
+						<button type="submit" class="btn btn-info">ë¡œê·¸ì•„ì›ƒ</button>
 					<c:choose>
 						<c:when test="${not empty requestScope.roomNo }">
-							<br> ¿¹¾àÇÏ½Ç ½Ã°£À» ¼±ÅÃÇÏ¼¼¿ä
+							<br> ì˜ˆì•½í•˜ì‹¤ ì‹œê°„ì„ ì„ íƒí•˜ì„¸ìš”
 						</c:when>
 						<c:otherwise>						
-							<br> ¿¹¾àÇÏ½Ç Ä·ÆÛ½º¸¦ ¼±ÅÃÇÏ¼¼¿ä
+							<br> ì˜ˆì•½í•˜ì‹¤ ìº í¼ìŠ¤ë¥¼ ì„ íƒí•˜ì„¸ìš”
 						</c:otherwise>
 					</c:choose>
 					</td>
@@ -40,11 +40,11 @@
 			</c:when>
 			<c:otherwise>
 				<tr>
-					<td>${sessionScope.employee.empName}´Ô ¾È³çÇÏ¼¼¿ä!
-						<button type="submit" class="btn btn-info">·Î±×¾Æ¿ô</button>
+					<td>${sessionScope.employee.empName}ë‹˜ ì•ˆë…•í•˜ì„¸ìš”!
+						<button type="submit" class="btn btn-info">ë¡œê·¸ì•„ì›ƒ</button>
 					</td>
 					<td>&nbsp;&nbsp;&nbsp;&nbsp;${building.buildingName } -&nbsp;&nbsp;</td>
-					<td>${listSize}°³ÀÇ È¸ÀÇ½Ç º¸À¯</td>
+					<td>${listSize}ê°œì˜ íšŒì˜ì‹¤ ë³´ìœ </td>
 					<td align="right"><img src="./img/${building.buildingImg }" style="height: 120px"/></td>
 				</tr>
 			</c:otherwise>

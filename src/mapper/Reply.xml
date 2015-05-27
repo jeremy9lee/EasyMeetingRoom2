@@ -12,16 +12,16 @@
 		<result property="content" column="content" />
 	</resultMap>
 
-	<insert id="insert" parameterType="Reply">
+	<insert id="replyInsert" parameterType="Reply">
 		insert into reply values(reply_seq.nextval, #{empNo}, #{buildingNo}, #{roomNo}, #{content})
 	</insert>
 
-	<delete id="delete" parameterType="Reply">
-		delete from reply where replyNo=#{replyNo} and empNo=#{empNo}
+	<delete id="replyDelete" parameterType="Reply">
+		delete from reply where replyNo=#{replyNo}
 	</delete>
 
-	<select id="list" resultMap="resultMapList">
-		select * from reply order by replyNo
+	<select id="list" resultMap="replyMap" parameterType = "hashmap">
+		select * from reply where buildingNo=#{buildingNo} and roomNo=#{roomNo} order by replyNo
 	</select>
 
 </mapper>

@@ -8,6 +8,7 @@
 <link href="./css/fullcalendar.css" rel="stylesheet" />
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="./css/fullcalendar.print.css" rel="stylesheet" media="print" />
+<link href="./css/replyform.css" rel="stylesheet" media="print" />
 <script src="./lib/moment.min.js"></script>
 <script src="./js/jquery-1.11.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
@@ -27,8 +28,8 @@
 			defaultView : 'agendaWeek',
 			editable : true,
 			selectable : true,
-			ignoreTimezone : false,		
-			currentTimezone :'Asia/Seoul',
+			ignoreTimezone : false,
+			currentTimezone : 'Asia/Seoul',
 			//header and other values
 			select : function(start, end, allDay) {
 				endtime = moment(end).format('ddd, MMM D, h:mm tt');
@@ -60,7 +61,7 @@
 			var end = new Date($('#apptEndTime').val());
 
 			$("#calendar").fullCalendar('renderEvent', {
-				currentTimezone :'Asia/Seoul',
+				currentTimezone : 'Asia/Seoul',
 				ignoreTimezone : false,
 				title : $('#userName').val(),
 				start : start,
@@ -71,6 +72,7 @@
 		}
 
 	});
+
 	function getReservationTable(id, empNo) {
 
 		$.ajax({
@@ -207,7 +209,7 @@
 </script>
 <style>
 body {
-	margin: 40px 10px;
+	margin: 50px 10px;
 	padding: 0;
 	font-family: "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
 	font-size: 14px;
@@ -226,11 +228,9 @@ body {
 		<input type="hidden" id="empNo" name="empNo"
 			value="${employee.empNo }"> <input type="hidden" id="roomNo"
 			name="roomNo" value="${roomNo}"> <input type="hidden"
-			id="buildingNo" name="buildingNo" value= "${buildingNo}">
+			id="buildingNo" name="buildingNo" value="${buildingNo}">
 		<div id="container" align="center" style="width: 100%">
 			<div id="calendar" style="width: 53%; float: left; margin-left: 2%"></div>
-
-
 
 			<div class="control-group"
 				style="width: 40%; float: right; padding-bottom: 5%">
@@ -243,6 +243,7 @@ body {
 					<input type="hidden" id="apptStartTime" name="start" /> <input
 						type="hidden" id="apptEndTime" name="end" /> <input type="hidden"
 						id="apptAllDay" />
+
 				</div>
 				<div class="control-group" style="width: 70%">
 					<label class="control-label" for="when">When:</label>
@@ -254,8 +255,41 @@ body {
 			</div>
 			<div id="list" style="width: 40%; float: right; margin-right: 3%"></div>
 		</div>
-
-	</form>
+		</form>
+		<div id="container">
+			<div id="content">
+				<div id="reply">
+					<form action="reply/insert" method="post">
+						<table>
+							<tr>
+								<td>${employee.empName }</td>
+							</tr>
+							<tr>
+								<td colspan=4><textarea name="content" id="content"></textarea></td>
+							</tr>
+							<tr>
+								<td colspan=4 align=right><input type="submit" VALUE=" 확인 "></td>
+							</tr>
+						</table>
+					</form>
+					<ul>
+						<li><c:forEach items="${list }" var="vo">
+								<table>
+									<tr>
+										<td>${vo.no }</td>
+										<td>${vo.name }</td>
+										<td><a href="/EasyMeetingRoom2/reply/delete/${vo.no}">삭제</a></td>
+									</tr>
+									<tr>
+										<td colspan=4>${vo.context }</td>
+									</tr>
+								</table>
+							</c:forEach> <br></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	
 
 
 </body>

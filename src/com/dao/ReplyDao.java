@@ -1,7 +1,9 @@
 package com.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,16 +18,19 @@ public class ReplyDao {
 	private SqlSession session;
 	
 	public void insert(Reply vo) {
-		session.insert("insert", vo);
+		session.insert("replyInsert", vo);
 	}
 
 	public void delete(Reply vo) {
 		session.delete("delete", vo);
 	}
 
-	public List<Reply> fetchList() {
+	public List<Reply> fetchList(String roomNo, String buildingNo) {
+		Map map = new HashMap();
+		map.put("roomNo", roomNo);
+		map.put("buildingNo", buildingNo);
 		List<Reply> list = new ArrayList<Reply>();
-		list = session.selectList("list");
+		list = session.selectList("list", map);
 		return list;
 	}
 }

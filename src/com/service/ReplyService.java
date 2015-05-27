@@ -13,8 +13,8 @@ public class ReplyService {
 	@Autowired
 	private ReplyDao dao;
 	
-	public List<Reply> fetchList(){
-		return dao.fetchList();
+	public List<Reply> fetchList(String roomNo, String buildingNo){
+		return dao.fetchList(roomNo, buildingNo);
 	}
 	
 	public void insertContent(Reply vo){

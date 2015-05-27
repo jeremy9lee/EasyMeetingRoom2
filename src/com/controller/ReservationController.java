@@ -3,6 +3,7 @@ package com.controller;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.service.ReplyService;
 import com.service.ReservationService;
 import com.vo.Employee;
+import com.vo.Reply;
 import com.vo.Reservation;
 
 @Controller
@@ -24,6 +27,8 @@ public class ReservationController {
 
 	@Autowired
 	ReservationService service;
+	@Autowired
+	ReplyService rservice;
 
 	@RequestMapping(value = "makeReservation.do")
 	public String makeReservation(Model m, HttpServletRequest request,
@@ -62,7 +67,11 @@ public class ReservationController {
 		m.addAttribute("buildingNo", buildingNo);
 		m.addAttribute("side", "side.jsp");
 		m.addAttribute("content", "calendar.jsp");
-
+		
+		
+		List<Reply> fetchList = rservice.fetchList(roomNo, buildingNo);
+		m.addAttribute("list", fetchList);
+		
 		return "index";
 	}
 

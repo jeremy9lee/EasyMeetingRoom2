@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -255,41 +256,51 @@ body {
 			</div>
 			<div id="list" style="width: 40%; float: right; margin-right: 3%"></div>
 		</div>
-		</form>
-		<div id="container">
-			<div id="content">
-				<div id="reply">
-					<form action="reply/insert" method="post">
-						<table>
-							<tr>
-								<td>${employee.empName }</td>
-							</tr>
-							<tr>
-								<td colspan=4><textarea name="content" id="content"></textarea></td>
-							</tr>
-							<tr>
-								<td colspan=4 align=right><input type="submit" VALUE=" 확인 "></td>
-							</tr>
-						</table>
-					</form>
-					<ul>
-						<li><c:forEach items="${list }" var="vo">
-								<table>
-									<tr>
-										<td>${vo.no }</td>
-										<td>${vo.name }</td>
-										<td><a href="/EasyMeetingRoom2/reply/delete/${vo.no}">삭제</a></td>
-									</tr>
-									<tr>
-										<td colspan=4>${vo.context }</td>
-									</tr>
-								</table>
-							</c:forEach> <br></li>
-					</ul>
-				</div>
+	</form>
+	<div id="container">
+		<div id="content">
+			<div id="reply">
+				<form action="replyInsert.do" method="post">
+
+					<input type="hidden" id="empNo" name="empNo"
+						value="${employee.empNo }"> <input type="hidden"
+						id="roomNo" name="roomNo" value="${roomNo}"> <input
+						type="hidden" id="buildingNo" name="buildingNo"
+						value="${buildingNo}">
+					<table>
+						<tr>
+							<td>${employee.empName }</td>
+						</tr>
+						<tr>
+							<td colspan=4><textarea name="content" id="content"></textarea></td>
+						</tr>
+						<tr>
+							<td colspan=4 align=right><input type="submit" VALUE=" 확인 "></td>
+						</tr>
+					</table>
+				</form>
+				<ul>
+					<li><c:forEach items="${list }" var="vo">
+							<table>
+								<tr>
+									<td>${vo.replyNo }</td>
+									<%-- <td>${empname }</td> --%>
+									<td>
+									<c:if test="${vo.empNo eq employee.empNo }">
+									<a href="/EasyMeetingRoom2/reply/delete/${vo.replyNo}">삭제</a>
+									</c:if>
+									</td>
+								</tr>
+								<tr>
+									<td colspan=4>${vo.content }</td>
+								</tr>
+							</table>
+						</c:forEach> <br></li>
+				</ul>
 			</div>
 		</div>
-	
+	</div>
+
 
 
 </body>

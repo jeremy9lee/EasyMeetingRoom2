@@ -2,36 +2,44 @@ package com.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.service.ReplyService;
 import com.vo.Reply;
 
 @Controller
-@RequestMapping("/reply")
 public class ReplyController {
 	@Autowired
 	private ReplyService service;
-	
-	@RequestMapping(value ={ "", "/", "/list" }, method = RequestMethod.GET)
-	public String list(Model model) {
-		List<Reply> list = service.fetchList();
-		model.addAttribute("list", list);
-		return "/reply";
-	}
 
-	@RequestMapping(value = { "/insert" }, method = RequestMethod.POST)
-	public String insert(@ModelAttribute Reply vo) {
+	@RequestMapping(value = { "replyInsert.do" }, method = RequestMethod.POST)
+	public String insert(@RequestParam(value="empNo", required=false) String empNo, 
+	        @RequestParam(value="buildingNo", required=false) String buildingNo, 
+	        @RequestParam(value="roomNo", required=false) String roomNo,
+	        @RequestParam(value="content", required=false) String content,
+	        Model model) {
+	
+		Reply vo = new Reply();
+		vo.setEmpNo(empNo);
+		vo.setBuildingNo(buildingNo);
+		vo.setRoomNo(roomNo);
+		vo.setContent(content);
+		System.out.println(vo.toString());
+		model.addAttribute("roomNo", roomNo);
+		model.addAttribute("buildingNo", buildingNo);
 		service.insertContent(vo);
 		return "redirect:/goToReservation.do";
 	}
 
-	@RequestMapping(value = {"/delete" }, method = RequestMethod.POST)
+	@RequestMapping(value = {"replyDelete.do" }, method = RequestMethod.POST)
 	public String delete(@ModelAttribute Reply vo) {
 		service.deleteContent(vo);
 		return "redirect:/reply";

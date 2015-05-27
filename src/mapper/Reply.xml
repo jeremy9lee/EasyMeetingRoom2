@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Reply">
+	<resultMap id="replyMap" type="Reply">
+		<id property="replyNo" column="replyNo" />
+		<result property="empNo" column="empNo" />
+		<result property="buildingNo" column="buildingNo" />
+		<result property="roomNo" column="roomNo" />
+		<result property="content" column="content" />
+	</resultMap>
+
+	<insert id="insert" parameterType="Reply">
+		insert into reply values(reply_seq.nextval, #{empNo}, #{buildingNo}, #{roomNo}, #{content})
+	</insert>
+
+	<delete id="delete" parameterType="Reply">
+		delete from reply where replyNo=#{replyNo} and empNo=#{empNo}
+	</delete>
+
+	<select id="list" resultMap="resultMapList">
+		select * from reply order by replyNo
+	</select>
+
+</mapper>

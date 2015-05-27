@@ -9,7 +9,7 @@
 <style type="text/css">
 p {
 	font-family: 'Jeju Gothic';
-	font-size: 50px;
+	font-size: 25px;
 	font-weight: bold;
 	font-stretch: extra-condensed;
 	color: grey;
@@ -22,19 +22,23 @@ p {
 	font-stretch: extra-condensed;
 	color: gray;
 }
+
 </style>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <script src="js/jquery-1.11.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 </head>
 <body>
+
+
 	<form action="login.do" method="post">
+ 
 		<center>
 			<img src="img/sds.jpg">
 			<p id="title">회의실 예약시스템</p>
 		</center>
 		<div align="center" class="inputEmpNo">
-			<p>사 번 을 입 력 하 세 요</p>
+			<p><small>사 번 을 입 력 하 세 요</small></p>
 			<input type="text" name="empNo" style="height: 35px; width: 300px"><br>
 			<br>
 			<button type="submit" class="btn btn-primary">로그인</button>

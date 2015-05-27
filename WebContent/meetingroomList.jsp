@@ -46,20 +46,10 @@ p.finish{
 	<div class="container">
 	<p class="title">예약하실 회의실을 선택하세요.</p>
 		<c:forEach items="${requestScope.meetingroomList }" var="m">
-			<c:choose>
-				<c:when test="${m.capacity eq 20 }">
-					<button type="button" class="btn btn-lg btn-primary" style="width: 150px; height: 150px" disabled="disabled">
-						${m.roomNo }&nbsp;호 <br> 수용인원 : ${m.capacity } <br> 
-						<p class="finish">당일예약마감!</p>						
-					</button>
-				</c:when>
-				<c:otherwise>
 					<input type="hidden" name="roomNo" value="${m.roomNo }">
-					<button type="submit" class="btn btn-lg btn-primary" style="width: 150px; height: 150px" >
+					<button type="submit" class="btn btn-lg btn-primary" style="width: 150px; height: 100px" >
 						${m.roomNo }&nbsp;호 <br> 수용인원 : ${m.capacity }
 					</button>
-				</c:otherwise>
-			</c:choose>
 		</c:forEach>
 
 	</div>

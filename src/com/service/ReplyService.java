@@ -21,7 +21,7 @@ public class ReplyService {
 		dao.insert(vo);
 	}
 
-	public void deleteContent(Reply vo){
-		dao.delete(vo);
+	public void deleteContent(String replyNo){
+		dao.delete(replyNo);
 	}
 }

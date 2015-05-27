@@ -16,8 +16,8 @@
 		insert into reply values(reply_seq.nextval, #{empNo}, #{buildingNo}, #{roomNo}, #{content})
 	</insert>
 
-	<delete id="delete" parameterType="Reply">
-		delete from reply where replyNo=#{replyNo} and empNo=#{empNo}
+	<delete id="replyDelete" parameterType="Reply">
+		delete from reply where replyNo=#{replyNo}
 	</delete>
 
 	<select id="list" resultMap="replyMap" parameterType = "hashmap">

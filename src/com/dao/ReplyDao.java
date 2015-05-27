@@ -21,8 +21,8 @@ public class ReplyDao {
 		session.insert("replyInsert", vo);
 	}
 
-	public void delete(Reply vo) {
-		session.delete("delete", vo);
+	public void delete(String replyNo) {
+		session.delete("replyDelete", replyNo);
 	}
 
 	public List<Reply> fetchList(String roomNo, String buildingNo) {

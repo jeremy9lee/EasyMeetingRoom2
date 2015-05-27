@@ -39,9 +39,15 @@ public class ReplyController {
 		return "redirect:/goToReservation.do";
 	}
 
-	@RequestMapping(value = {"replyDelete.do" }, method = RequestMethod.POST)
-	public String delete(@ModelAttribute Reply vo) {
-		service.deleteContent(vo);
-		return "redirect:/reply";
+	@RequestMapping(value = {"replyDelete.do" }, method = RequestMethod.GET)
+	public String delete(@RequestParam(value="replyNo", required=false) String replyNo,
+			@RequestParam(value="buildingNo", required=false) String buildingNo, 
+	        @RequestParam(value="roomNo", required=false) String roomNo,
+	        Model model) {
+		model.addAttribute("roomNo", roomNo);
+		model.addAttribute("buildingNo", buildingNo);
+		System.out.println(roomNo+":"+buildingNo);
+		service.deleteContent(replyNo);
+		return "redirect:/goToReservation.do";
 	}
 }

@@ -278,7 +278,7 @@ body {
 							<td colspan=4 align=right><input type="submit" VALUE=" 확인 "></td>
 						</tr>
 					</table>
-				</form>
+				
 				<ul>
 					<li><c:forEach items="${list }" var="vo">
 							<table>
@@ -287,7 +287,7 @@ body {
 									<%-- <td>${empname }</td> --%>
 									<td>
 									<c:if test="${vo.empNo eq employee.empNo }">
-									<a href="/EasyMeetingRoom2/reply/delete/${vo.replyNo}">삭제</a>
+									<a href="replyDelete.do?replyNo=${vo.replyNo }&roomNo=${vo.roomNo}&buildingNo=${buildingNo}">삭제</a>
 									</c:if>
 									</td>
 								</tr>
@@ -297,6 +297,7 @@ body {
 							</table>
 						</c:forEach> <br></li>
 				</ul>
+				</form>
 			</div>
 		</div>
 	</div>

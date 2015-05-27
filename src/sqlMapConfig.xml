@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+  
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.vo.Building" alias="Building"/>
+		<typeAlias type="com.vo.Employee" alias="Employee"/>
+		<typeAlias type="com.vo.Meetingroom" alias="Meetingroom"/>
+		<typeAlias type="com.vo.Reservation" alias="Reservation"/>
+	</typeAliases>
+	<mappers>
+		<mapper resource="mapper/Building.xml"/>
+		<mapper resource="mapper/Employee.xml"/>
+		<mapper resource="mapper/Meetingroom.xml"/>
+		<mapper resource="mapper/Reservation.xml"/>
+	</mappers>
+</configuration>

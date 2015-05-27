@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Meetingroom">
+<resultMap id="meetingroomMap" type="Meetingroom">
+	<id property="roomNo" column="roomNo" />
+	<result property="buildingNo" column="buildingNo" />
+	<result property="capacity" column="capacity" />
+	<result property="floor" column="floor" />
+</resultMap>
+
+
+<select id="meetingroomList" resultMap="meetingroomMap" parameterType="String">
+	SELECT * FROM MEETINGROOM WHERE BUILDINGNO = #{buildingNo}
+</select>
+
+
+
+
+
+
+
+
+
+</mapper>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Reservation">
+	<resultMap id="reservationMap" type="Reservation">
+		<id property="reservedNo" column="reservedNo" />
+		<result property="enrolledDate" column="enrolledDate" />
+		<result property="buildingNo" column="buildingNo" />
+		<result property="roomNo" column="roomNo" />
+		<result property="empNo" column="empNo" />
+		<result property="reservedStart" column="RESERVED_START" />
+		<result property="reservedEnd" column="RESERVED_END" />
+	</resultMap>
+
+	<insert id="makeReservation" parameterType="Reservation">
+		INSERT INTO
+		RESERVATION
+		VALUES(r_seq.nextval, SYSDATE, #{buildingNo}, #{roomNo}, #{empNo},
+		#{reservedStart}, #{reservedEnd})
+	</insert>
+
+	<select id="reservationList" parameterType="hashMap" resultMap="reservationMap">
+		SELECT * FROM RESERVATION WHERE roomNo = #{roomNo} AND buildingNo = #{buildingNo}
+	</select>
+
+	<select id="reservationListByEmp" parameterType="hashMap"
+		resultMap="reservationMap">
+		SELECT * FROM RESERVATION WHERE empNo = #{empNo} 
+		<if test="roomNo !=null">
+		AND roomNo = #{roomNo}
+		</if>
+		<if test="buildingNo !=null">
+		AND buildingNo = #{buildingNo}
+		</if>
+		ORDER BY
+		enrolledDate
+	</select>
+
+	
+
+	<delete id="deleteReservation" parameterType="String">
+		DELETE FROM
+		RESERVATION WHERE reservedNo = #{reservedNo}
+	</delete>
+</mapper>

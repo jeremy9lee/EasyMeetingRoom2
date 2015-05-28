@@ -20,6 +20,7 @@
 </head>
 <body>
 	<form action="logout.do">
+	<a href="goToMapPage.do" > 맵페이지로 가기 </a>
 		<table height="150px" class="side">
 
 			<c:choose>
@@ -53,6 +54,7 @@
 				</c:otherwise>
 			</c:choose>
 		</table>
+		
 	</form>
 </body>
 </html>

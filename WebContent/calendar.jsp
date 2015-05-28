@@ -268,6 +268,7 @@ body {
 
 			<div class="control-group"
 				style="width: 40%; float: right; padding-bottom: 5%">
+					<div><h3>${roomNo} 호 </h3></div>
 				<label class="control-label" for="inputPatient">사용자:</label>
 				<div class="controls">
 					<input type="text" name="userName" id="userName"

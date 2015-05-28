@@ -40,19 +40,16 @@ p.finish{
 <script src="js/bootstrap.min.js"></script>
 
 <body>
-<form action="goToReservation.do">
 <input type = "hidden" value  = "${buildingNo }" name = "buildingNo">
 	<br>
 	<div class="container">
 	<p class="title">예약하실 회의실을 선택하세요.</p>
 		<c:forEach items="${requestScope.meetingroomList }" var="m">
 					<input type="hidden" name="roomNo" value="${m.roomNo }">
-					<button type="submit" class="btn btn-lg btn-primary" style="width: 150px; height: 100px" >
-						${m.roomNo }&nbsp;호 <br> 수용인원 : ${m.capacity }
-					</button>
+					<a href = "goToReservation.do?roomNo=${m.roomNo}&buildingNo=${buildingNo}"><button type="button" class="btn btn-primary" style="width: 150px; height: 100px" >
+						${m.roomNo }&nbsp;호 <br> 수용인원 : ${m.capacity }</button></a>
 		</c:forEach>
 
 	</div>
-</form>
 </body>
 </html>

@@ -25,12 +25,12 @@ public class ReplyDao {
 		session.delete("replyDelete", replyNo);
 	}
 
-	public List<Reply> fetchList(String roomNo, String buildingNo) {
+	public List<Map<Object, Object>> fetchList(String roomNo, String buildingNo) {
 		Map map = new HashMap();
 		map.put("roomNo", roomNo);
 		map.put("buildingNo", buildingNo);
-		List<Reply> list = new ArrayList<Reply>();
-		list = session.selectList("list", map);
-		return list;
+		List<Map<Object, Object>> listMap = new ArrayList<Map<Object, Object>>();
+		listMap = session.selectList("list", map);
+		return listMap;
 	}
 }

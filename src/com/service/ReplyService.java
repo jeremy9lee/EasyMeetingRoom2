@@ -1,6 +1,7 @@
 package com.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,7 @@ public class ReplyService {
 	@Autowired
 	private ReplyDao dao;
 	
-	public List<Reply> fetchList(String roomNo, String buildingNo){
+	public List<Map<Object, Object>> fetchList(String roomNo, String buildingNo){
 		return dao.fetchList(roomNo, buildingNo);
 	}
 	

@@ -284,12 +284,12 @@ body {
 					<c:forEach items="${list }" var="vo">
 							<table class = 'table table-bordered'>
 								<tr>
-									<td style="width: 5%">${vo.replyNo }</td>
-									<td style="width: 15%">${employee.empName }</td>
-									<td colspan=4; style="text-align:left; padding-left: 3px">${vo.content }</td><br>
+									<td style="width: 5%">${vo.REPLYNO }</td>
+									<td style="width: 15%">${vo.EMPNAME }</td>
+									<td colspan=4; style="text-align:left; padding-left: 3px">${vo.CONTENT }</td><br>
 									<td style="width: 10%">
-									<c:if test="${vo.empNo eq employee.empNo }">
-									<a href="replyDelete.do?replyNo=${vo.replyNo }&roomNo=${vo.roomNo}&buildingNo=${buildingNo}">삭제</a>
+									<c:if test="${vo.EMPNO eq employee.empNo }">
+									<a href="replyDelete.do?replyNo=${vo.REPLYNO }&roomNo=${vo.ROOMNO}&buildingNo=${buildingNo}">삭제</a>
 									</c:if>
 									</td>
 								</tr>

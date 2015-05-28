@@ -48,7 +48,6 @@
 
 		$("#submitButton").on('click', function(e) {
 			// We don't want this to act as a link so cancel the link action
-			alert("���� �����Ͻðڽ��ϱ�?");
 			doSubmit();
 		});
 
@@ -56,7 +55,6 @@
 			console.log($('#apptStartTime').val());
 			console.log($('#apptEndTime').val());
 			console.log($('#apptAllDay').val());
-			alert("form submitted");
 
 			var start = new Date($('#apptStartTime').val());
 			var end = new Date($('#apptEndTime').val());

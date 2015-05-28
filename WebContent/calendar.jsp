@@ -1,4 +1,4 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -9,7 +9,7 @@
 <link href="./css/fullcalendar.css" rel="stylesheet" />
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="./css/fullcalendar.print.css" rel="stylesheet" media="print" />
-<link href="css/replyform.css" rel="stylesheet"  />
+<link href="css/replyform.css" rel="stylesheet" />
 <script src="./lib/moment.min.js"></script>
 <script src="./js/jquery-1.11.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
@@ -91,12 +91,14 @@
 
 	}
 
-	function deleteSelectedReservation(reservedNo, roomNo) {
+	function deleteSelectedReservation(empNo, reservedNo, roomNo) {
 		$.ajax({
 
 			url : "deleteSelectedReservation.do",
 			dataType : "json",
 			data : {
+				buildingNo : $("#buildingNo").val(),
+				empNo : empNo,
 				reservedNo : reservedNo,
 				roomNo : roomNo
 			},
@@ -106,10 +108,36 @@
 
 	}
 
-	function successDelete(jsonData) {
+		function successDelete(jsonData) {
 
+	 var result = jsonData.success;
+	 if (result == true) {
+	 window.location.reload();
+	 }
+	 } 
+	function deleteContent(replyNo, roomNo, buildingNo) {
+		$.ajax({
+			url : "replyDelete.do",
+			dataType : "json",
+			type : "get",
+			data : {
+				replyNo : replyNo,
+				roomNo : roomNo,
+				buildingNo : buildingNo
+			},
+			error : function(e) {
+				console.log(e)
+			},
+			success : successDeleteContent
+		})
+	}
+
+	function successDeleteContent(jsonData) {
+		console.log("entered ");
 		var result = jsonData.success;
+		console.log("result " + result);
 		if (result == true) {
+			alert(true);
 			window.location.reload();
 		}
 	}
@@ -167,45 +195,50 @@
 		console.log(empNo == temp);
 		console.log(empNo);
 		if (empNo == $("#empNo").val()) {
-
-			var rListByNo = jsonData.rListByNo;
-			var rsize = jsonData.rsize;
-			var content = "<table class = 'table table-bordered' style = 'margin-left: 3%; margin-right: 3%;'>";
-
-			content += "<tr><th>시작</th><th>끝</th><th>등록시간</th></tr>";
-			for (var i = 0; i < parseInt(rsize); i++) {
-				var start = new Date(rListByNo[i].reservedStart);
-				var end = new Date(rListByNo[i].reservedEnd);
-				var enrolled = new Date(rListByNo[i].enrolledDate);
-
-				var startDate = start.getFullYear() + "/"
-						+ (start.getMonth() + 1) + "/" + start.getDate() + " "
-						+ start.getHours() + ":" + start.getMinutes();
-				var endDate = end.getFullYear() + "/" + (end.getMonth() + 1)
-						+ "/" + end.getDate() + " " + end.getHours() + ":"
-						+ end.getMinutes();
-				var enrolledDate = enrolled.getFullYear() + "/"
-						+ (enrolled.getMonth() + 1) + "/" + enrolled.getDate()
-						+ " " + enrolled.getHours() + ":"
-						+ enrolled.getMinutes();
-
-				content += "<tr>";
-				content += "<td>" + startDate + "</td>"
-				content += "<td>" + endDate + "</td>"
-				content += "<td>" + enrolledDate + "</td>"
-				content += "<td><input type='button' class= 'btn btn-warning' onclick = deleteSelectedReservation('"
-						+ rListByNo[i].reservedNo
-						+ "','"
-						+ $("#roomNo").val()
-						+ "') value = 'X'></td>"
-				content += "</tr>";
-
-			}
-			content += "</table>"
-
-			$("#list").html(content);
+			getMyReservationList(jsonData);
 		}
 
+	}
+	
+	function getMyReservationList(jsonData){
+		var rListByNo = jsonData.rListByNo;
+		var rsize = jsonData.rsize;
+		var content = "<table class = 'table table-bordered' style = 'margin-left: 3%; margin-right: 3%;'>";
+
+		content += "<tr><th>시작</th><th>끝</th><th>등록시간</th></tr>";
+		for (var i = 0; i < parseInt(rsize); i++) {
+			var start = new Date(rListByNo[i].reservedStart);
+			var end = new Date(rListByNo[i].reservedEnd);
+			var enrolled = new Date(rListByNo[i].enrolledDate);
+			var empNo = $("#empNo").val();
+			var startDate = start.getFullYear() + "/"
+					+ (start.getMonth() + 1) + "/" + start.getDate() + " "
+					+ start.getHours() + ":" + start.getMinutes();
+			var endDate = end.getFullYear() + "/" + (end.getMonth() + 1)
+					+ "/" + end.getDate() + " " + end.getHours() + ":"
+					+ end.getMinutes();
+			var enrolledDate = enrolled.getFullYear() + "/"
+					+ (enrolled.getMonth() + 1) + "/" + enrolled.getDate()
+					+ " " + enrolled.getHours() + ":"
+					+ enrolled.getMinutes();
+
+			content += "<tr>";
+			content += "<td>" + startDate + "</td>"
+			content += "<td>" + endDate + "</td>"
+			content += "<td>" + enrolledDate + "</td>"
+			content += "<td><input type='button' class= 'btn btn-warning' onclick = deleteSelectedReservation('"
+					+ empNo
+					+ "','"
+					+ rListByNo[i].reservedNo
+					+ "','"
+					+ $("#roomNo").val()
+					+ "') value = 'X'></td>"
+			content += "</tr>";
+
+		}
+		content += "</table>"
+
+		$("#list").html(content);
 	}
 </script>
 <style>
@@ -220,8 +253,6 @@ body {
 	max-width: 900px;
 	margin: 0 auto;
 }
-
-
 </style>
 </head>
 <body>
@@ -269,32 +300,36 @@ body {
 						id="roomNo" name="roomNo" value="${roomNo}"> <input
 						type="hidden" id="buildingNo" name="buildingNo"
 						value="${buildingNo}">
-					<table class = 'table table-bordered'>
+					<table class='table table-bordered'>
 						<tr>
-							<td>${employee.empName } 님의 댓글 쓰기</td>
+							<td>${employee.empName }님의 댓글 쓰기</td>
 						</tr>
 						<tr>
 							<td colspan=4><textarea name="content" id="content"></textarea></td>
 						</tr>
 						<tr>
-							<td colspan=4 style="align:right"><input type="submit" VALUE=" 확인 "></td>
+							<td colspan=4 style="align: right"><input type="submit"
+								VALUE=" 확인 "></td>
 						</tr>
 					</table>
-				
+
 					<c:forEach items="${list }" var="vo">
-							<table class = 'table table-bordered'>
-								<tr>
-									<td style="width: 5%">${vo.REPLYNO }</td>
-									<td style="width: 15%">${vo.EMPNAME }</td>
-									<td colspan=4; style="text-align:left; padding-left: 3px">${vo.CONTENT }</td><br>
-									<td style="width: 10%">
-									<c:if test="${vo.EMPNO eq employee.empNo }">
-									<a href="replyDelete.do?replyNo=${vo.REPLYNO }&roomNo=${vo.ROOMNO}&buildingNo=${buildingNo}">삭제</a>
-									</c:if>
-									</td>
-								</tr>
-							</table>
-					</c:forEach> <br>
+						<table class='table table-bordered'>
+							<tr>
+								<td style="width: 5%">${vo.REPLYNO }</td>
+								<td style="width: 15%">${vo.EMPNAME }</td>
+								<td colspan=4; style="text-align: left; padding-left: 3px">${vo.CONTENT }</td>
+								<br>
+								<td style="width: 10%"><c:if
+										test="${vo.EMPNO eq employee.empNo }">
+										<%-- <a href="replyDelete.do?replyNo=${vo.REPLYNO }&roomNo=${vo.ROOMNO}&buildingNo=${buildingNo}">삭제</a> --%>
+										<a
+											href="javascript:deleteContent( '${vo.REPLYNO }','${roomNo}', '${buildingNo}')">삭제</a>
+									</c:if></td>
+							</tr>
+						</table>
+					</c:forEach>
+					<br>
 				</form>
 			</div>
 		</div>

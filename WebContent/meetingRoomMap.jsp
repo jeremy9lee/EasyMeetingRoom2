@@ -351,14 +351,12 @@ body{
 		var buildingList = jsonData.buildingList;
 		var size = jsonData.size;
 
-		alert("what?");
 		console.log(size + "가장 중요한 리스트의 길이이다.");
 		for (var i = 0; i < parseInt(size); i++) {
 			var xPoint = parseFloat(buildingList[i].buildingLocX);
 
 			var yPoint = parseFloat(buildingList[i].buildingLocY);
 			var newCenter = new google.maps.LatLng(xPoint, yPoint);
-			alert(xPoint + ":" + yPoint);
 
 			// Add the circle for this city to the map.
 
@@ -448,7 +446,6 @@ body{
 	function showSelectedPlace() {
 		deleteMarkers();
 		var place = autocomplete.getPlace();
-		alert(place.geometry.location);
 		map.panTo(place.geometry.location);
 		markers[0] = new google.maps.Marker({
 			position : place.geometry.location,

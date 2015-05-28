@@ -38,10 +38,10 @@ public class ReservationController {
 			@RequestParam("start") Date start, @RequestParam("end") Date end) {
 
 		System.out.println("ggg");
-		Reservation info = new Reservation(buildingNo, roomNo, empNo, start, end);
+		Reservation info = new Reservation(buildingNo, roomNo, empNo, start,
+				end);
 		boolean flag = service.makeReservation(info);
 
-		
 		if (flag == false) {
 			m.addAttribute("message", "�������");
 			return "redirect:meegintroomList.do";
@@ -53,7 +53,8 @@ public class ReservationController {
 
 	@RequestMapping(value = "goToReservation.do")
 	public String goToReservation(Model m, HttpServletRequest request,
-			@RequestParam("roomNo") String roomNo, @RequestParam("buildingNo") String buildingNo) {
+			@RequestParam("roomNo") String roomNo,
+			@RequestParam("buildingNo") String buildingNo) {
 
 		System.out.println("여기까지당");
 		ArrayList<Reservation> rList = (ArrayList<Reservation>) service
@@ -67,25 +68,30 @@ public class ReservationController {
 		m.addAttribute("buildingNo", buildingNo);
 		m.addAttribute("side", "side.jsp");
 		m.addAttribute("content", "calendar.jsp");
-		
-		
-		List<Reply> fetchList = rservice.fetchList(roomNo, buildingNo);
+
+		List<Map<Object, Object>> fetchList = rservice.fetchList(roomNo,
+				buildingNo);
 		m.addAttribute("list", fetchList);
-		
+		for (int i = 0; i < fetchList.size(); i++) {
+			for (Object map : fetchList.get(i).keySet()) {
+				System.out.print(map + " : " +fetchList.get(i).get(map) + " /");
+			}
+
+		}
+
 		return "index";
 	}
 
 	@RequestMapping(value = "getReservationTable.do")
 	@ResponseBody
 	public Map getReservations(Model m, HttpServletRequest request,
-			@RequestParam("roomNo") String roomNo, @RequestParam("empNo") String empNo,
-			 @RequestParam("buildingNo") String buildingNo) {
+			@RequestParam("roomNo") String roomNo,
+			@RequestParam("empNo") String empNo,
+			@RequestParam("buildingNo") String buildingNo) {
 
-		
 		System.out.println("fnffn");
 		Map responseMap = new HashMap();
 
-		
 		ArrayList<Reservation> rList = (ArrayList<Reservation>) service
 				.getReservationList(roomNo, buildingNo);
 
@@ -93,10 +99,9 @@ public class ReservationController {
 		HttpSession session = request.getSession();
 
 		Employee e = (Employee) session.getAttribute("employee");
-		
-			
+
 		ArrayList<Reservation> rListByNo = (ArrayList<Reservation>) service
-				.reservationListByEmp( empNo, roomNo, buildingNo);
+				.reservationListByEmp(empNo, roomNo, buildingNo);
 		responseMap.put("reservationList", rList);
 		responseMap.put("employee", session.getAttribute("employee"));
 		responseMap.put("size", rList.size());
@@ -111,18 +116,15 @@ public class ReservationController {
 	@ResponseBody
 	public Map deleteReservation(Model m, HttpServletRequest request,
 			@RequestParam("reservedNo") String reservedNo,
-			@RequestParam("roomNo") String roomNo
-			) {
-		
-		Map responseMap  = new HashMap();
+			@RequestParam("roomNo") String roomNo) {
+
+		Map responseMap = new HashMap();
 		service.deleteReservation(reservedNo);
 		System.out.println("삭제페이지");
 		responseMap.put("success", true);
-		
+
 		return responseMap;
 
 	}
 
-	
-	
 }

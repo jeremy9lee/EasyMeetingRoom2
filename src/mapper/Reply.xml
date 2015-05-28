@@ -20,8 +20,11 @@
 		delete from reply where replyNo=#{replyNo}
 	</delete>
 
-	<select id="list" resultMap="replyMap" parameterType = "hashmap">
-		select * from reply where buildingNo=#{buildingNo} and roomNo=#{roomNo} order by replyNo
+	<select id="list" resultType="map" parameterType = "hashmap">
+		select r.replyNo, e.empNo, e.empName, r.content 
+		from reply r, employee e 
+		where r.empNo=e.empNo and buildingNo=#{buildingNo} and roomNo=#{roomNo}
+		order by replyNo
 	</select>
 
 </mapper>

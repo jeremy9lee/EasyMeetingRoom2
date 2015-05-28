@@ -9,7 +9,7 @@
 <link href="./css/fullcalendar.css" rel="stylesheet" />
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="./css/fullcalendar.print.css" rel="stylesheet" media="print" />
-<link href="./css/replyform.css" rel="stylesheet" media="print" />
+<link href="css/replyform.css" rel="stylesheet"  />
 <script src="./lib/moment.min.js"></script>
 <script src="./js/jquery-1.11.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
@@ -220,6 +220,8 @@ body {
 	max-width: 900px;
 	margin: 0 auto;
 }
+
+
 </style>
 </head>
 <body>
@@ -267,36 +269,32 @@ body {
 						id="roomNo" name="roomNo" value="${roomNo}"> <input
 						type="hidden" id="buildingNo" name="buildingNo"
 						value="${buildingNo}">
-					<table>
+					<table class = 'table table-bordered'>
 						<tr>
-							<td>${employee.empName }</td>
+							<td>${employee.empName } 님의 댓글 쓰기</td>
 						</tr>
 						<tr>
 							<td colspan=4><textarea name="content" id="content"></textarea></td>
 						</tr>
 						<tr>
-							<td colspan=4 align=right><input type="submit" VALUE=" 확인 "></td>
+							<td colspan=4 style="align:right"><input type="submit" VALUE=" 확인 "></td>
 						</tr>
 					</table>
 				
-				<ul>
-					<li><c:forEach items="${list }" var="vo">
-							<table>
+					<c:forEach items="${list }" var="vo">
+							<table class = 'table table-bordered'>
 								<tr>
-									<td>${vo.replyNo }</td>
-									<%-- <td>${empname }</td> --%>
-									<td>
+									<td style="width: 5%">${vo.replyNo }</td>
+									<td style="width: 15%">${employee.empName }</td>
+									<td colspan=4; style="text-align:left; padding-left: 3px">${vo.content }</td><br>
+									<td style="width: 10%">
 									<c:if test="${vo.empNo eq employee.empNo }">
 									<a href="replyDelete.do?replyNo=${vo.replyNo }&roomNo=${vo.roomNo}&buildingNo=${buildingNo}">삭제</a>
 									</c:if>
 									</td>
 								</tr>
-								<tr>
-									<td colspan=4>${vo.content }</td>
-								</tr>
 							</table>
-						</c:forEach> <br></li>
-				</ul>
+					</c:forEach> <br>
 				</form>
 			</div>
 		</div>

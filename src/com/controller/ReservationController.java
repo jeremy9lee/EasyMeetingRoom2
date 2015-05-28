@@ -116,9 +116,30 @@ public class ReservationController {
 	@ResponseBody
 	public Map deleteReservation(Model m, HttpServletRequest request,
 			@RequestParam("reservedNo") String reservedNo,
-			@RequestParam("roomNo") String roomNo) {
-
+			@RequestParam("roomNo") String roomNo,
+			@RequestParam("empNo") String empNo,
+			@RequestParam("buildingNo") String buildingNo) {
 		Map responseMap = new HashMap();
+		
+		ArrayList<Reservation> rList = (ArrayList<Reservation>) service
+				.getReservationList(roomNo, buildingNo);
+
+		System.out.println(rList.size() + ":");
+		HttpSession session = request.getSession();
+
+		Employee e = (Employee) session.getAttribute("employee");
+
+		ArrayList<Reservation> rListByNo = (ArrayList<Reservation>) service
+				.reservationListByEmp(empNo, roomNo, buildingNo);
+		
+		responseMap.put("reservationList", rList);
+		responseMap.put("employee", session.getAttribute("employee"));
+		responseMap.put("size", rList.size());
+		responseMap.put("empNo", request.getParameter("empNo"));
+		responseMap.put("rListByNo", rListByNo);
+		responseMap.put("rsize", rListByNo.size());
+		
+		
 		service.deleteReservation(reservedNo);
 		System.out.println("삭제페이지");
 		responseMap.put("success", true);

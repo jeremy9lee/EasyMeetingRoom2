@@ -22,7 +22,7 @@ public class ReplyService {
 		dao.insert(vo);
 	}
 
-	public void deleteContent(String replyNo){
-		dao.delete(replyNo);
+	public boolean deleteContent(String replyNo){
+		return dao.delete(replyNo);
 	}
 }

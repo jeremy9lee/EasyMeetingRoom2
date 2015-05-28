@@ -1,16 +1,15 @@
 package com.controller;
 
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.service.ReplyService;
 import com.vo.Reply;
@@ -39,15 +38,16 @@ public class ReplyController {
 		return "redirect:/goToReservation.do";
 	}
 
-	@RequestMapping(value = {"replyDelete.do" }, method = RequestMethod.GET)
-	public String delete(@RequestParam(value="replyNo", required=false) String replyNo,
+	@RequestMapping(value = {"replyDelete.do" })
+	@ResponseBody
+	public Map delete(@RequestParam(value="replyNo", required=false) String replyNo,
 			@RequestParam(value="buildingNo", required=false) String buildingNo, 
 	        @RequestParam(value="roomNo", required=false) String roomNo,
 	        Model model) {
-		model.addAttribute("roomNo", roomNo);
-		model.addAttribute("buildingNo", buildingNo);
-		System.out.println(roomNo+":"+buildingNo);
-		service.deleteContent(replyNo);
-		return "redirect:/goToReservation.do";
+		Map responseMap = new HashMap();
+		boolean result = service.deleteContent(replyNo);	
+		responseMap.put("success", result);
+		
+		return responseMap;
 	}
 }

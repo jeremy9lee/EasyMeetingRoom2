@@ -21,10 +21,11 @@ public class ReplyDao {
 		session.insert("replyInsert", vo);
 	}
 
-	public void delete(String replyNo) {
-		session.delete("replyDelete", replyNo);
+	public boolean delete(String replyNo) {
+		int r = session.delete("replyDelete", replyNo);
+		return r==1;
 	}
-
+	
 	public List<Map<Object, Object>> fetchList(String roomNo, String buildingNo) {
 		Map map = new HashMap();
 		map.put("roomNo", roomNo);

@@ -1,0 +1,25 @@
+@CHARSET "UTF-8";
+
+#reply			{ margin:2% 1% auto;	width:43%; float:right; }
+
+#reply form, 
+#reply table	{ width:100%; margin:0% }
+
+#reply table,
+#reply table td { padding-bottom:5px; padding-top: 5px; text-align: center }
+
+
+
+#reply.delete-form	{ height:100px }
+#reply.delete-form form {
+	width:340px;
+	padding:10px;
+	border:1px solid #666;
+	border-radius: 10px;
+	margin:50px auto;
+}
+#reply.delete-form a	{ display:block; margin:20px auto; width:20px }
+
+#reply.delete-message p	{ padding:10px; height:50px; text-align:center }
+
+#reply textarea#content	{ width: 100%; border:none; height: 50px; resize: none; outline: none; }

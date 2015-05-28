@@ -56,4 +56,12 @@ public class Reply implements Serializable {
 	public void setContent(String content) {
 		this.content = content;
 	}
+	@Override
+	public String toString() {
+		return "Reply [replyNo=" + replyNo + ", empNo=" + empNo
+				+ ", buildingNo=" + buildingNo + ", roomNo=" + roomNo
+				+ ", content=" + content + "]";
+	}
+	
+	
 }
